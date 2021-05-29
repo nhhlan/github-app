@@ -1,0 +1,18 @@
+.header
+{
+    &__mode
+    {
+        top: 3vh;
+    }
+    &__searchbar
+    {
+        max-width: 1110px;
+    }
+}
+.job
+{
+    max-width: 1110px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 auto;
+    gap: 2rem;
+}

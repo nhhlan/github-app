@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+/*--VARIABLES--*/
+// Color
+$primary-violet: #5964e0;
+$primary-light-violet: #939BF4;
+$primary-very-dark-blue: #19202D;
+$primary-midnight: #121721;
+$secondary-white: #FFFFFF;
+$secondary-light-grey: #F4F6F8;
+$secondary-gray: #9daec2;
+$secondary-dark-grey: #6E8098;
+// Fonts
+$size-h1: 1.75rem; // 28px
+$size-h2: 1.5rem; // 24px
+$size-h3: 1.25rem; // 20px
+$size-h4: 0.875rem; // 14px
+$size-main: 1rem; // 16px
+$font-family: 'Kumbh Sans', sans-serif;
+$weight-normal: 400;
+$weight-bold: 700;
+
+
+/*--RESET--*/
+/* Box sizing rules */
+*, *::before, *::after
+{
+    box-sizing: border-box;
+}
+/* Remove default margin & padding */
+html, body, h1, h2, h3, h4, h5, p, ul, li
+{
+    margin: 0;
+    padding: 0;
+}
+/* Set core root defaults */
+html:focus-within 
+{
+	scroll-behavior: smooth;
+}
+/* Set core body defaults */
+body 
+{
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    font-family: $font-family;
+    font-size: $size-main;
+    color: $primary-very-dark-blue;
+}
+/* Remove default list style */
+li 
+{
+    list-style: none;
+}
+a 
+{
+    text-decoration: none;
+    color: $primary-very-dark-blue;
+    cursor: pointer;
+}
+/* Make images easier to work with */
+picture, img
+{
+    max-width: 100%;
+    display: block;
+    height: 100%;
+}
+/* Inherit fonts for inputs and buttons */
+input, button, textarea, select 
+{
+  font: inherit;
+}
+
+/*--VISUALLY HIDDEN--*/
+.sr-only {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+	clip-path: inset(50%) !important;
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
+}
+
+/*--UTILITIES--*/
+.lightBtn
+{
+    background-color: $primary-violet;
+    color: $secondary-white;
+    font-size: $size-main;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+}
+.lightBtn:hover
+{
+    background-color: $primary-light-violet;
+}
+.darkBtn
+{
+    background-color: $secondary-white;
+    opacity: 0.1;
+    font-size: $size-main;
+}
+.darkBtn:hover
+{
+    opacity: 0.35;
+}
+
+/*--LAYOUT--*/
+body
+{
+    background-color: $secondary-light-grey;
+}
+.row
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.input
+{
+    input[type=checkbox]
+    {
+        display: none;
+    }
+    input[type=checkbox] + *::before 
+    {
+        content: "";
+        display: inline-block;
+        vertical-align: bottom;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 10%;
+        margin-right: 1rem;
+        background: rgba($color: $primary-midnight, $alpha: 0.1);
+        border: none;
+    }
+    input[type=checkbox]:checked + *::before 
+    {
+        content: url(../assets/desktop/icon-check.svg);
+        color: white;
+        text-align: center;
+        line-height: 1.5rem;
+        background:$primary-violet;
+        border-color: $primary-violet;
+    }
+}
+.line
+{
+    height: 1px;
+    width: 90vw;
+    margin-left: -1.5rem;
+    background-color: $secondary-dark-grey;
+}
+
+
+/*--COMPONENT--*/
+.header
+{
+    position: relative;
+    &__background
+    {
+        picture, img
+        {
+            width: 100%;
+        }
+    }
+    &__mode
+    {
+        @extend .row;
+        width: 90vw;
+        margin: 0 auto;
+        position: absolute;
+        top: 5vh;
+        left: 5vw;
+    }
+    &__logo
+    {
+        margin-right: auto;
+    }
+    &__toggle
+    {
+        width: 3rem;
+        height: 1.5rem;
+        background-color: $secondary-white;
+        border-radius: 20px;
+        margin: 0 1rem;
+        position: relative;
+        &::after
+        {
+            content: '';
+            background-color: $primary-violet;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            position: absolute;
+            top: 4px;
+            left: 4px;  //28px
+            cursor: pointer;
+            transition: left 0.25s ease;
+        }
+    }
+
+    //Search Bar
+    &__searchbar
+    {
+        @extend .row;
+        width: 90vw;
+        margin: 0 auto;
+        padding-right: 1rem;
+        background-color: $secondary-white;
+        border-radius: 10px;
+        transform: translateY(-50%);
+        input
+        {
+            border: none;
+            padding: 2rem 0 2rem 2rem;
+            border-radius: 10px;
+        }
+        label
+        {
+            @extend .row;
+        }
+        label[for=title] > img, .header__hidden
+        {
+            display: none;
+        }
+        label[for=title]
+        {
+            margin-right: auto;
+        }
+        a
+        {
+            width: 3rem;
+            padding: 0.75rem;
+        }
+        #search
+        {
+            background-color: $primary-violet;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    
+    
+    &__modal
+    {
+        background-color: rgba($color: $primary-midnight, $alpha: 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s opacity 0.5s;
+        &-active
+        {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        &-content
+        {
+            background-color: $secondary-white;
+            width: 90%;
+            padding: 1.5rem;
+            border-radius: 10px;
+            label
+            {
+                @extend .row;
+            }
+            label[for=location]
+            {
+                padding: 0 0 1.5rem;
+                input
+                {
+                    margin-left: 1rem;
+                    border: none;
+                }
+            }
+            label[for=type]
+            {
+                @extend .input;
+                margin: 1.5rem 0;
+                font-size: $size-main;
+                font-weight: $weight-bold;
+            }
+            a
+            {
+                display: block;
+                text-align: center;
+                font-size: $size-main;
+                font-weight: $weight-bold;
+            }
+        }
+    }
+
+}
+
+
+
+.job
+{
+    width: 90vw;
+    text-align: center; 
+    margin: 2rem auto 5rem;
+    &__card
+    {
+        background-color: $secondary-white;
+        padding: 2rem;
+        position: relative;
+        border-radius: 10px;
+        margin-bottom: 3rem;
+        text-align: left;
+        * + *
+        {
+            margin-bottom: 1rem;
+        }
+    }
+    &__logo
+    {
+        max-width: 50px;
+        max-height: 50px;
+        position: absolute;
+        top: -25px;
+        left: 2rem;
+    }
+    &__type
+    {
+        color: $secondary-dark-grey;
+        font-size: $size-main;
+    }
+    &__createTime
+    {
+        span:nth-of-type(2)
+        {
+            font-size: 2rem;
+            color: $secondary-dark-grey;
+        }
+    }
+    &__title
+    {
+        font-size: $size-h3;
+        font-weight: $weight-bold;
+        color: $primary-very-dark-blue;
+    }
+    &__location
+    {
+        font-size: $size-h4;
+        font-weight: $weight-bold;
+        color: $primary-violet;
+        margin-top: 2rem;
+    }
+}
+
+.loadmore
+{
+    @extend .row;
+    justify-content: center;
+    margin-bottom: 5rem;
+}

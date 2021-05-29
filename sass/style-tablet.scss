@@ -1,0 +1,85 @@
+@import './style.scss';
+
+.header
+{
+    &__searchbar
+    {
+        justify-content: space-between;
+        padding: 0 1rem;
+        // Show full search bar
+        .header__hidden
+        {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-grow: 1;
+            label
+            {
+                flex-grow: 1;
+            }
+            a
+            {
+                width: auto;
+                padding: 1rem 2rem;
+                margin-left: 1rem;
+            }
+            label[for=type]
+            {
+                @extend .input;
+                margin-left: 3rem;
+                flex-shrink: 1;
+                label
+                {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    // width: 100%;
+                }
+                &::before
+                {
+                    content: '';
+                    width: 1px;
+                    height: 5rem;
+                    background: rgba($color: $secondary-dark-grey, $alpha: 0.2);
+                    transform: translateX(-2rem);
+                }
+            }
+        }
+        label[for=title] > img
+        {
+            display: block;
+        }
+        label[for=title]
+        {
+            flex-basis: 1;
+            flex-grow: 1;
+            &::after
+            {
+                content: '';
+                width: 1px;
+                height: 5rem;
+                background: rgba($color: $secondary-dark-grey, $alpha: 0.2);
+                transform: translateX(-2rem);
+            }
+        }
+        .modal, #search
+        {
+            display: none;
+        }
+        input
+        {
+            padding: 2rem 0 2rem 1rem;
+            flex-shrink: 2;
+            width: 100%; //Override default width of input
+        }
+    }
+}
+
+.job
+{
+    display: grid;
+    width: 90vw;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    gap: 2rem;
+}
+

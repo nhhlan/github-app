@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="stylesheet" href="sass/style.css">
+  <link rel="stylesheet" href="sass/style-tablet.css" media="screen and (min-width: 768px)">
+  <link rel="stylesheet" href="sass/style-desktop.css" media="screen and (min-width: 1024px)">
+
+  <title>Github App</title>
+</head>
+
+<body>
+  <header>
+    <!-- Background -->
+    <div class="header__background">
+      <picture>
+        <source srcset="assets/desktop/bg-pattern-header.svg" media="(min-width: 1024px)"/>
+        <source srcset="assets/tablet/bg-pattern-header.svg" media="(min-width: 768px)"/>
+        <img src="assets/mobile/bg-pattern-header.svg" alt="background">
+      </picture>
+    </div>
+
+    <!-- Logo & Toggle -->
+    <div class="header__mode">
+        <!-- Logo -->
+        <a href="#" class="header__logo"><img src="assets/desktop/logo.svg" alt="logo"></a>
+        <!-- Toggle -->
+        <div class="row">
+          <img src="assets/desktop/icon-sun.svg" alt="light mode">
+          <div class="header__toggle"></div>
+          <img src="assets/desktop/icon-moon.svg" alt="dark mode">
+        </div>
+    </div>
+
+    <!-- Search bar -->
+    <div class="header__searchbar">
+      <label for="title">
+        <img src="assets/desktop/icon-search.svg" alt="search">
+        <input type="text" placeholder="Filter by title...">
+      </label>
+      <a href="#" class="modal"><img id="modal" src="assets/mobile/icon-filter.svg" alt="filter"></a>
+      <a href="#" id="search">
+        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M17.112 15.059h-1.088l-.377-.377a8.814 8.814 0 002.15-5.784A8.898 8.898 0 008.898 0 8.898 8.898 0 000 8.898a8.898 8.898 0 008.898 8.899c2.211 0 4.23-.808 5.784-2.143l.377.377v1.081l6.845 6.832 2.04-2.04-6.832-6.845zm-8.214 0A6.16 6.16 0 118.9 2.737a6.16 6.16 0 010 12.322z" fill="#FFF" fill-rule="nonzero"/></svg>
+      </a>
+      <div class="header__hidden">
+        <label for="location">
+          <img src="assets/desktop/icon-location.svg" alt="location">
+          <input type="text" placeholder="Filter by location...">
+        </label>
+        <label for="type">
+          <input type="checkbox" name="fulltime" id="fulltime1"> <!-- Need id -->
+          <label for="fulltime1">Full Time Only</label>
+        </label>
+        <a href="#" class="searchBtn lightBtn">Search</a>
+      </div>
+    </div>
+    
+    <!-- Modal mobile -->
+    <div class="header__modal">
+      <div class="header__modal-content">
+        <label for="location">
+          <img src="assets/desktop/icon-location.svg" alt="location">
+          <input type="text" placeholder="Filter by location...">
+        </label>
+        <div class="line"></div>
+        <label for="type">
+          <input type="checkbox" name="fulltime" id="fulltime2"> <!-- Need id -->
+          <label for="fulltime2">Full Time Only</label>
+        </label>
+        <a href="#" class="searchBtn lightBtn">Search</a>
+      </div>
+    </div>
+  </header>
+
+
+  <main>
+    <div class="job">
+      <!-- Job card -->
+      <a href="#"><div class="job__card job-1">
+        <img src="assets/SR Logo.png" class="job__logo" alt="company logo">
+        <div class="job__createTime">
+          <span class="job__type">5h ago</span>
+          <span>.</span>
+          <span class="job__type">Full Time</span>
+        </div>
+        <h3 class="job__title">Senior Software Engineer</h3>
+        <p class="job__type">So Digital Inc.</p>
+        <h4 class="job__location">Remote</h4>
+      </div></a>
+
+      <a href="#"><div class="job__card job-2">
+        <img src="assets/SR Logo.png" class="job__logo" alt="company logo">
+        <div class="job__createTime">
+          <span class="job__type">5h ago</span>
+          <span>.</span>
+          <span class="job__type">Full Time</span>
+        </div>
+        <h3 class="job__title">Senior Software Engineer</h3>
+        <p class="job__type">So Digital Inc.</p>
+        <h4 class="job__location">Remote</h4>
+      </div></a>
+
+      <a href="#"><div class="job__card job-3">
+        <img src="assets/SR Logo.png" class="job__logo" alt="company logo">
+        <div class="job__createTime">
+          <span class="job__type">5h ago</span>
+          <span>.</span>
+          <span class="job__type">Full Time</span>
+        </div>
+        <h3 class="job__title">Senior Software Engineer</h3>
+        <p class="job__type">So Digital Inc.</p>
+        <h4 class="job__location">Remote</h4>
+      </div></a>
+
+      <a href="#"><div class="job__card job-4">
+        <img src="assets/SR Logo.png" class="job__logo" alt="company logo">
+        <div class="job__createTime">
+          <span class="job__type">5h ago</span>
+          <span>.</span>
+          <span class="job__type">Full Time</span>
+        </div>
+        <h3 class="job__title">Senior Software Engineer</h3>
+        <p class="job__type">So Digital Inc.</p>
+        <h4 class="job__location">Remote</h4>
+      </div></a>
+
+      <a href="#"><div class="job__card job-5">
+        <img src="assets/SR Logo.png" class="job__logo" alt="company logo">
+        <div class="job__createTime">
+          <span class="job__type">5h ago</span>
+          <span>.</span>
+          <span class="job__type">Full Time</span>
+        </div>
+        <h3 class="job__title">Senior Software Engineer</h3>
+        <p class="job__type">So Digital Inc.</p>
+        <h4 class="job__location">Remote</h4>
+      </div></a>
+    
+    </div>
+
+    <!-- Load more -->
+    <div class="loadmore">
+      <a href="#" class="lightBtn">Load More</a>
+    </div>
+    
+  </main>
+  
+  <!-- <script src="js/class.js"></script> -->
+  <!-- <script src="js/app.js"></script> -->
+  <script src="js/ui.js"></script>
+</body>
+</html>

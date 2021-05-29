@@ -1,0 +1,16 @@
+.header__mode {
+  top: 3vh;
+}
+
+.header__searchbar {
+  max-width: 1110px;
+}
+
+.job {
+  max-width: 1110px;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 auto;
+  gap: 2rem;
+}
+/*# sourceMappingURL=style-desktop.css.map */
