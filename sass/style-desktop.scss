@@ -3,6 +3,8 @@
     &__mode
     {
         top: 3vh;
+        left: calc((100vw - 1110px) / 2);
+        max-width: 1110px;
     }
     &__searchbar
     {
