@@ -1,6 +1,8 @@
 const modalBtn = document.querySelector('#modal');
 const modal = document.querySelector('.header__modal');
 
+
+/* MODAL */
 // Show modal when click on filter icon
 modalBtn.addEventListener('click', () => {
     modal.classList.add('header__modal-active');
@@ -11,3 +13,5 @@ window.addEventListener('click', (e) => {
         modal.classList.remove('header__modal-active');
     }
 });
+
+/* DARK MODE */

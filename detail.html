@@ -7,39 +7,129 @@
   <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
   <link rel="stylesheet" href="sass/style.css">
+  <link rel="stylesheet" href="sass/style-tablet.css" media="screen and (min-width: 768px)">
+  <link rel="stylesheet" href="sass/style-desktop.css" media="screen and (min-width: 1200px)">
 
-  <title>Github App</title>
+  <title>Github App | Job Details</title>
 
 </head>
 <body>
   <header>
-    <div class="container-normal">
-      <!-- Logo --><!-- Toggle switch -->
+    <!-- Background -->
+    <div class="header__background">
+      <picture>
+        <source srcset="assets/desktop/bg-pattern-header.svg" media="(min-width: 1200px)"/>
+        <source srcset="assets/tablet/bg-pattern-header.svg" media="(min-width: 768px)"/>
+        <img src="assets/mobile/bg-pattern-header.svg" alt="background">
+      </picture>
+    </div>
+
+    <!-- Logo & Toggle -->
+    <div class="header__mode">
+        <!-- Logo -->
+        <a href="#" class="header__logo"><img src="assets/desktop/logo.svg" alt="logo"></a>
+        <!-- Toggle -->
+        <div class="row">
+          <img src="assets/desktop/icon-sun.svg" alt="light mode">
+          <div class="header__toggle"></div>
+          <img src="assets/desktop/icon-moon.svg" alt="dark mode">
+        </div>
     </div>
   </header>
 
   <main>
-    <div class="container-small">
-      <!-- Company info -->
-        <!-- company_logo <img> -->
-        <!-- company 'So Digital Inc.' -->
-        <!-- company_url -->
+    <div class="detail">
+      <!-- Company basic info -->
+      <div class="detail__company">
+        <img src="assets/SR Logo.png" alt="company logo">
+        <h3>So Digital Inc.</h3>
+        <p>sodigital.co</p>
+        <a href="#" class="lightBtn-2">Company Site</a>
+      </div>
 
       <!-- Description -->
-        <!-- created_at '5h ago' -->
-        <!-- type 'Full Time' -->
-        <!-- title 'Senior Software Engineer' -->
-        <!-- location 'Remote' -->
-        <!-- description -->
+      <div class="detail__info">
+        <div class="job__createTime">
+          <span class="job__type">5h ago</span>
+          <span>.</span>
+          <span class="job__type">Full Time</span>
+        </div>
+        <h3 class="job__title">Senior Software Engineer</h3>
+        <h4 class="job__location">Remote</h4>
+        <a href="#" class="lightBtn">Apply Now</a>
 
-      <!-- How to apply -->
-        <!-- how_to_apply -->
+        <div class="detail__description">
+          <p><strong>SweetRush has an exciting opportunity for an experienced creative front-end developer (full stack is also acceptable) with an eye for graphic and UX design!</strong></p>
+          <p><strong>ABOUT THE ROLE:</strong></p>
+          <p>This is an important role on the Engineering and Development department’s Course Development team, and you will be reporting directly to the Course Development team lead.</p>
+          <p>Historically, the developers most successful in this role contribute to multiple projects at the same time; show a willingness to improve existing techniques, frameworks, and templates; and come up with innovations of their own. You will succeed if you truly enjoy active collaboration with your colleagues and don’t mind stepping in when your help is required.</p>
+          <p>This is a remote position and a great opportunity to work from home. Candidates from all geographic locations are welcome to apply; however, our development team is mostly based in North and Latin America, and you should be willing to work during our business hours.</p>
+          <p><strong>REQUIRED SKILLS:</strong></p>
+          <p><strong>Front end</strong></p>
+          <ul>
+          <li>7+ years as a front-end or full-stack developer in a creative environment</li>
+          <li>Expert-level JavaScript skills—Vanilla JS expertise is as important as the knowledge of frameworks and libraries</li>
+          <li>High level of competency in HTML5 and CSS3</li>
+          <li>Familiarity with one or more frameworks, preferably <strong>React and Node.js</strong>
+          </li>
+          <li>While React is the most commonly used framework at the moment, your proven ability to quickly harness unfamiliar technology is more important than an intimate knowledge of any of the given frameworks.</li>
+          <li><strong>Most importantly - you can look at just about any cool effect, interaction, animation, parallax, website on the web, and say - Even if I can’t do this now, I want to try!</strong></li>
+          <li>Understanding of responsive design and mobile-first principles</li>
+          </ul>
+          <p><strong>Soft skills and generic productivity tools</strong></p>
+          <ul>
+          <li>Ability to clearly communicate in English</li>
+          <li>English verbal communication skills are an absolute must because the position requires frequent interaction with peers and clients.</li>
+          <li>Experience with version control systems such as Git or Subversion</li>
+          <li>Experience working in a team development environment or demonstrating a capacity to do so</li>
+          <li>Enjoy learning and experimenting, open to new ideas</li>
+          </ul>
+          <p><strong>YOU WILL IMPRESS EVERYONE IF YOU:</strong></p>
+          <ul>
+          <li>Have built a learning simulation</li>
+          <li>Have experience with mobile app development and distribution</li>
+          <li>Have experience with graphic and UX design</li>
+          <li>Know anything about Adapt Framework</li>
+          </ul>
+          <p><strong>YOU MAY BE EXPECTED TO:</strong></p>
+          <ul>
+          <li>Complete a test assignment</li>
+          <li>Be interviewed by a number of highly judgmental yet supremely talented future colleagues</li>
+          </ul>
+          <p><strong>THE ESSENCE OF THE JOB</strong></p>
+          <p>OK, now that you’ve made it through all the obligatory language, you may be wondering what this position is really all about. Therefore, please read the rest of this job description carefully!</p>
+          <p>It all boils down to your ability to make a simple claim: <strong>I can do it!</strong></p>
+          <p>If we show you an interactive website with intricate animations, a complicated menu system, and multiple interdependencies, you should state: <strong>I can do it!</strong></p>
+          <p>If we need to harness a complex web-based gaming engine and use it for the first time to build a learning simulation, you should confidently assert: <strong>I can do it!</strong></p>
+          <p>If we need to produce a large volume of digital training materials in a record short period of time, you should answer: <strong>I can do it!</strong></p>
+          <p>And if we need an adventurous engineer to lead the team in the creation of a system that is completely different from everything we have done before, we’re most definitely looking for the loud <strong>I can do it!</strong></p>
+          <p>And even more importantly, you must <strong>want to do it</strong>.</p>
+          <p>SweetRush is a team of winners. These are not empty words. Just check out our impressive industry trophy shelf, which includes this recent success: <a href="https://www.sweetrush.com/sweetrush-wins-16-awards-brandon-hall-awards-2020">https://www.sweetrush.com/sweetrush-wins-16-awards-brandon-hall-awards-2020</a>.</p>
+          <p>As a winner, you will always want the ball. Want to do better. Want to be more creative and efficient. Join us, and let's see if we can win even more by working together!</p>
+          <p>This is a work-from-home opportunity! We are 100% virtual, and all communications occur over digital channels (Skype/Web Share/email), apart from infrequent on-site meetings. Occasional travel may be required.</p>
+          <p><strong>Please note: We're all about remote work and have collaborators based all around the world; however, SweetRush is a US-based company, and English is our primary language. If you'd like to be considered for this opportunity, please submit your resume in English.</strong></p>
+        </div>
+      </div>
 
-      <!-- Footer -->
+      <div class="detail__apply">
+        <h3>How To Apply</h3>
+        <p>If this describes your interests and experience, please submit your current resume and salary requirements through the following link:
+          <a href="https://www.sweetrush.com/join-us/">https://www.sweetrush.com/join-us/</a>
+        </p>
+      </div>
     </div>
+
+    <div class="footer">
+      <div class="footer__text">
+        <h3>Senior Software Engineer</h3>
+        <p>So Digital Inc.</p>
+      </div>
+      <a href="#" class="lightBtn">Apply Now</a>
+    </div>  
   </main>
   
   <script src="js/class.js"></script>
   <script src="js/app.js"></script>
+  <!-- <script src="js/ui.js"></script> -->
 </body>
 </html>

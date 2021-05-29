@@ -4,7 +4,8 @@ job.getJobs().then(data => {
     if(data.length === 0){
         console.log('alert');
     } else {
-        console.log(data[0].title);
+        console.log(data);
+        // console.log(data[0].title);
     }
     
 });

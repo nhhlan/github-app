@@ -12,7 +12,13 @@
   max-width: 1110px;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
-  margin: 0 auto;
-  gap: 2rem;
+}
+
+.detail {
+  max-width: 730px;
+}
+
+.footer {
+  padding: 2rem calc((100vw - 730px) / 2);
 }
 /*# sourceMappingURL=style-desktop.css.map */

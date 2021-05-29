@@ -79,7 +79,98 @@
     display: grid;
     width: 90vw;
     grid-template-columns: 1fr 1fr;
-    margin: 0 auto;
+    margin: 2rem auto;
     gap: 2rem;
 }
 
+
+.detail
+{
+    &__company
+    {
+        display: grid;
+        grid-template-columns: 8.75rem auto 13rem;
+        grid-template-rows: 1fr 1fr;
+        padding: 0;
+        align-items: center;
+        transform: translateY(-2.5rem);
+        border-top-left-radius: 0;
+        img
+        {
+            grid-column: 1 / span 1;
+            grid-row: 1 / span 2;
+            position: static;
+            margin: 0;
+            max-width: 140px;
+            max-height: 140px;
+            border-radius: 0;
+            border-bottom-left-radius: 10px;
+        }
+        h3
+        {
+            grid-column: 2 / span 1;
+            grid-row: 1 / span 1;
+            text-align: left;
+            margin-left: 2rem;
+            align-self: end;
+        }
+        p
+        {
+            grid-column: 2 / span 1;
+            grid-row: 2 / span 1;
+            margin: 0.5rem 0 0 2rem;
+            text-align: left;
+            align-self: start;
+        }
+        a
+        {
+            grid-column: 3 / span 1;
+            grid-row: 1 / span 2;
+            margin: 0;
+            margin-right: 2rem;
+        }
+    }
+
+    &__info
+    {
+        position: relative;
+        padding: 2rem;
+        margin-top: 0;
+        a.lightBtn
+        {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+        }
+    }
+
+    &__description
+    {
+        margin-top: 2.5rem;
+    }
+
+    &__apply
+    {
+        margin: 2rem 0 9rem;
+    }
+}
+
+.footer
+{
+    @extend .row;
+    justify-content: space-between;
+    padding: 2rem 5vw;
+    &__text
+    {
+        display: block;
+    }
+    h3
+    {
+        font-size: $size-h3;
+        font-weight: $weight-bold;
+    }
+    p
+    {
+        font-size: $size-main;
+    }
+}
