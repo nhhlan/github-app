@@ -1,5 +1,6 @@
 const job = new Job;
 
+/* GET DATA */
 job.getJobs().then(data => {
     if(data.length === 0){
         console.log('alert');
@@ -10,6 +11,7 @@ job.getJobs().then(data => {
     
 });
 
+/* SHOW UI */
 const jobContainer = document.querySelector('.job');
 // jobContainer.innerHTML = `
 //     <a href="${data.url}"><div class="job__card">
@@ -24,3 +26,6 @@ const jobContainer = document.querySelector('.job');
 //     </div></a>
 // `;
     
+
+
+/* SEARCH */

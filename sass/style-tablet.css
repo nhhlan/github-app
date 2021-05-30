@@ -1,5 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
 /*--VARIABLES--*/
+/*--DARK MODE VAR--*/
+:root {
+  --color-background: #F4F6F8;
+  --color-text: #19202D;
+  --color-placeholder: rgba(25, 32, 45, 0.5);
+  --color-component-background: #FFFFFF;
+  --btn-background-1: #5964e0;
+  --btn-background-hover-1: #939BF4;
+  --btn-text-1: #FFFFFF;
+  --btn-background-2: rgba(89, 100, 224, 0.1);
+  --btn-background-hover-2: rgba(89, 100, 224, 0.25);
+  --btn-text-2: #5964e0;
+  --checkbox-background: rgba(18, 23, 33, 0.1);
+}
+
+.dark {
+  --color-background: #121721;
+  --color-text: #FFFFFF;
+  --color-placeholder: rgba(255, 255, 255, 0.5);
+  --color-component-background: #19202D;
+  --btn-background-1: rgba(255, 255, 255, 0.1);
+  --btn-background-hover-1: rgba(255, 255, 255, 0.35);
+  --btn-text-1: #FFFFFF;
+  --btn-background-2: rgba(255, 255, 255, 0.1);
+  --btn-background-hover-2: rgba(255, 255, 255, 0.35);
+  --btn-text-2: #FFFFFF;
+  --checkbox-background: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  -webkit-transition: all .15s ease;
+  transition: all .15s ease;
+}
+
 /*--RESET--*/
 /* Box sizing rules */
 *, *::before, *::after {
@@ -24,7 +58,7 @@ body {
   text-rendering: optimizeSpeed;
   font-family: "Kumbh Sans", sans-serif;
   font-size: 1rem;
-  color: #19202D;
+  color: var(--color-text);
 }
 
 /* Remove default list style */
@@ -34,7 +68,7 @@ li {
 
 a {
   text-decoration: none;
-  color: #19202D;
+  color: var(--color-text);
   cursor: pointer;
   font-size: 1rem;
   font-weight: 700;
@@ -48,8 +82,30 @@ picture, img {
 }
 
 /* Inherit fonts for inputs and buttons */
-input, button, textarea, select {
+input[type=text], button, textarea, select {
   font: inherit;
+  color: var(--color-text);
+  background-color: var(--color-component-background);
+}
+
+::-webkit-input-placeholder {
+  color: var(--color-placeholder);
+}
+
+:-ms-input-placeholder {
+  color: var(--color-placeholder);
+}
+
+::-ms-input-placeholder {
+  color: var(--color-placeholder);
+}
+
+::placeholder {
+  color: var(--color-placeholder);
+}
+
+svg {
+  pointer-events: none;
 }
 
 /*--VISUALLY HIDDEN--*/
@@ -69,36 +125,27 @@ input, button, textarea, select {
 
 /*--UTILITIES--*/
 .lightBtn {
-  background-color: #5964e0;
-  color: #FFFFFF;
+  background-color: var(--btn-background-1);
+  color: var(--btn-text-1);
   font-size: 1rem;
   padding: 1rem 2rem;
   border-radius: 5px;
 }
 
 .lightBtn:hover {
-  background-color: #939BF4;
+  background-color: var(--btn-background-hover-1);
 }
 
 .lightBtn-2 {
-  background-color: rgba(89, 100, 224, 0.1);
-  color: #5964e0;
+  background-color: var(--btn-background-2);
+  color: var(--btn-text-2);
   font-size: 1rem;
   padding: 1rem 2rem;
   border-radius: 5px;
 }
 
 .lightBtn-2:hover {
-  background-color: rgba(89, 100, 224, 0.35);
-}
-
-.darkBtn {
-  background-color: rgba(255, 255, 255, 0.1);
-  font-size: 1rem;
-}
-
-.darkBtn:hover {
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: var(--btn-background-hover-2);
 }
 
 .input input[type=checkbox], .header__modal-content label[for=type] input[type=checkbox], .header__searchbar .header__hidden label[for=type] input[type=checkbox] {
@@ -113,7 +160,7 @@ input, button, textarea, select {
   height: 1.5rem;
   border-radius: 10%;
   margin-right: 1rem;
-  background: rgba(18, 23, 33, 0.1);
+  background-color: var(--checkbox-background);
   border: none;
 }
 
@@ -122,7 +169,7 @@ input, button, textarea, select {
   color: white;
   text-align: center;
   line-height: 1.5rem;
-  background: #5964e0;
+  background-color: #5964e0;
   border-color: #5964e0;
 }
 
@@ -139,7 +186,7 @@ input, button, textarea, select {
 
 /*--LAYOUT--*/
 body {
-  background-color: #F4F6F8;
+  background-color: var(--color-background);
 }
 
 .row, .header__mode, .header__searchbar, .header__searchbar label, .header__modal-content label, .loadmore, .footer {
@@ -204,11 +251,15 @@ body {
   background-color: #939BF4;
 }
 
+.header__toggle.active::after {
+  left: 28px;
+}
+
 .header__searchbar {
   width: 90vw;
   margin: 0 auto;
   padding-right: 1rem;
-  background-color: #FFFFFF;
+  background-color: var(--color-component-background);
   border-radius: 10px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -248,6 +299,10 @@ body {
           justify-content: center;
 }
 
+.header__searchbar .modal.active path {
+  fill: #FFFFFF;
+}
+
 .header__modal {
   background-color: rgba(18, 23, 33, 0.5);
   display: -webkit-box;
@@ -281,7 +336,7 @@ body {
 }
 
 .header__modal-content {
-  background-color: #FFFFFF;
+  background-color: var(--color-component-background);
   width: 90%;
   padding: 1.5rem;
   border-radius: 10px;
@@ -314,7 +369,7 @@ body {
 }
 
 .job__card {
-  background-color: #FFFFFF;
+  background-color: var(--color-component-background);
   padding: 2rem;
   position: relative;
   border-radius: 10px;
@@ -332,11 +387,18 @@ body {
   position: absolute;
   top: -25px;
   left: 2rem;
+  border-radius: 15px;
 }
 
 .job__type {
   color: #6E8098;
   font-size: 1rem;
+  font-weight: 400;
+}
+
+.job__createTime {
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .job__createTime span:nth-of-type(2) {
@@ -347,7 +409,7 @@ body {
 .job__title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #19202D;
+  color: var(--color-text);
 }
 
 .job__title:hover {
@@ -374,7 +436,7 @@ body {
 }
 
 .detail__company {
-  background-color: #FFFFFF;
+  background-color: var(--color-component-background);
   text-align: center;
   padding: 3rem 1rem 2.5rem;
   position: relative;
@@ -410,7 +472,7 @@ body {
 }
 
 .detail__info {
-  background-color: #FFFFFF;
+  background-color: var(--color-component-background);
   border-radius: 10px;
   padding: 2rem 1rem;
   margin-top: 1rem;
@@ -447,7 +509,7 @@ body {
 }
 
 .detail__description strong {
-  color: #19202D;
+  color: var(--color-text);
 }
 
 .detail__description a {
@@ -483,7 +545,7 @@ body {
 .footer {
   padding: 5vw;
   width: 100vw;
-  background-color: #FFFFFF;
+  background-color: var(--color-component-background);
   margin: 0 auto;
   position: fixed;
   bottom: 0;
@@ -701,6 +763,9 @@ body {
 }
 
 .footer p {
+  color: #6E8098;
   font-size: 1rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
 }
 /*# sourceMappingURL=style-tablet.css.map */

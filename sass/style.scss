@@ -20,6 +20,41 @@ $font-family: 'Kumbh Sans', sans-serif;
 $weight-normal: 400;
 $weight-bold: 700;
 
+/*--DARK MODE VAR--*/
+:root 
+{
+    --color-background: #{$secondary-light-grey};
+    --color-text: #{$primary-very-dark-blue};
+    --color-placeholder: #{rgba($color: $primary-very-dark-blue, $alpha: 0.5)};
+    --color-component-background: #{$secondary-white};
+    --btn-background-1: #{$primary-violet};
+    --btn-background-hover-1: #{$primary-light-violet};
+    --btn-text-1: #{$secondary-white};
+    --btn-background-2: #{rgba($color: $primary-violet, $alpha: 0.1)};
+    --btn-background-hover-2: #{rgba($color: $primary-violet, $alpha: 0.25)};
+    --btn-text-2: #{$primary-violet};
+    --checkbox-background: #{rgba($color: $primary-midnight, $alpha: 0.1)};
+}
+  
+.dark 
+{
+    --color-background: #{$primary-midnight};
+    --color-text: #{$secondary-white};
+    --color-placeholder: #{rgba($color: $secondary-white, $alpha: 0.5)};
+    --color-component-background: #{$primary-very-dark-blue};
+    --btn-background-1: #{rgba($color: $secondary-white, $alpha: 0.1)};
+    --btn-background-hover-1: #{rgba($color: $secondary-white, $alpha: 0.35)};
+    --btn-text-1: #{$secondary-white};
+    --btn-background-2: #{rgba($color: $secondary-white, $alpha: 0.1)};
+    --btn-background-hover-2: #{rgba($color: $secondary-white, $alpha: 0.35)};
+    --btn-text-2: #{$secondary-white};
+    --checkbox-background: #{rgba($color: $secondary-white, $alpha: 0.1)};
+}
+*
+{
+    transition: all .15s ease;
+}
+
 
 /*--RESET--*/
 /* Box sizing rules */
@@ -45,7 +80,7 @@ body
     text-rendering: optimizeSpeed;
     font-family: $font-family;
     font-size: $size-main;
-    color: $primary-very-dark-blue;
+    color: var(--color-text);
 }
 /* Remove default list style */
 li 
@@ -55,7 +90,7 @@ li
 a 
 {
     text-decoration: none;
-    color: $primary-very-dark-blue;
+    color: var(--color-text);
     cursor: pointer;
     font-size: $size-main;
     font-weight: $weight-bold;
@@ -68,9 +103,19 @@ picture, img
     height: 100%;
 }
 /* Inherit fonts for inputs and buttons */
-input, button, textarea, select 
+input[type=text], button, textarea, select 
 {
-  font: inherit;
+    font: inherit;
+    color: var(--color-text);
+    background-color: var(--color-component-background);
+}
+::placeholder
+{
+    color: var(--color-placeholder);
+}
+svg
+{
+    pointer-events: none; //Mmake svg clickable
 }
 
 /*--VISUALLY HIDDEN--*/
@@ -91,35 +136,26 @@ input, button, textarea, select
 /*--UTILITIES--*/
 .lightBtn
 {
-    background-color: $primary-violet;
-    color: $secondary-white;
+    background-color: var(--btn-background-1);
+    color: var(--btn-text-1);
     font-size: $size-main;
     padding: 1rem 2rem;
     border-radius: 5px;
     &:hover
     {
-        background-color: $primary-light-violet;
+        background-color: var(--btn-background-hover-1);
     }
 }
 .lightBtn-2
 {
-    background-color: rgba($color: $primary-violet, $alpha: 0.1);
-    color: $primary-violet;
+    background-color: var(--btn-background-2);
+    color: var(--btn-text-2);
     font-size: $size-main;
     padding: 1rem 2rem;
     border-radius: 5px;
     &:hover
     {
-        background-color: rgba($color: $primary-violet, $alpha: 0.35);
-    }
-}
-.darkBtn
-{
-    background-color: rgba($color: $secondary-white, $alpha: 0.1);
-    font-size: $size-main;
-    &:hover
-    {
-        background-color: rgba($color: $secondary-white, $alpha: 0.35);
+        background-color: var(--btn-background-hover-2);
     }
 }
 .input
@@ -137,7 +173,7 @@ input, button, textarea, select
         height: 1.5rem;
         border-radius: 10%;
         margin-right: 1rem;
-        background: rgba($color: $primary-midnight, $alpha: 0.1);
+        background-color: var(--checkbox-background);
         border: none;
     }
     input[type=checkbox]:checked + *::before 
@@ -146,7 +182,7 @@ input, button, textarea, select
         color: white;
         text-align: center;
         line-height: 1.5rem;
-        background:$primary-violet;
+        background-color:$primary-violet;
         border-color: $primary-violet;
     }
 }
@@ -166,7 +202,7 @@ input, button, textarea, select
 /*--LAYOUT--*/
 body
 {
-    background-color: $secondary-light-grey;
+    background-color: var(--color-background);
 }
 .row
 {
@@ -228,6 +264,10 @@ body
             background-color: $primary-light-violet;
         }
     }
+    &__toggle.active::after
+    {
+        left: 28px;
+    }
 
     //Search Bar
     &__searchbar
@@ -236,7 +276,7 @@ body
         width: 90vw;
         margin: 0 auto;
         padding-right: 1rem;
-        background-color: $secondary-white;
+        background-color: var(--color-component-background);
         border-radius: 10px;
         transform: translateY(-50%);
         input
@@ -271,6 +311,10 @@ body
             align-items: center;
             justify-content: center;
         }
+        .modal.active path
+        {
+            fill: $secondary-white;
+        }
     }
     
     
@@ -298,7 +342,7 @@ body
 
         &-content
         {
-            background-color: $secondary-white;
+            background-color: var(--color-component-background);
             width: 90%;
             padding: 1.5rem;
             border-radius: 10px;
@@ -341,7 +385,7 @@ body
     margin: 2rem auto 5rem;
     &__card
     {
-        background-color: $secondary-white;
+        background-color: var(--color-component-background);
         padding: 2rem;
         position: relative;
         border-radius: 10px;
@@ -359,14 +403,18 @@ body
         position: absolute;
         top: -25px;
         left: 2rem;
+        border-radius: 15px;
     }
     &__type
     {
         color: $secondary-dark-grey;
         font-size: $size-main;
+        font-weight: $weight-normal;
     }
     &__createTime
     {
+        font-size: $size-main;
+        font-weight: $weight-normal;
         span:nth-of-type(2)
         {
             font-size: 2rem;
@@ -377,7 +425,7 @@ body
     {
         font-size: $size-h3;
         font-weight: $weight-bold;
-        color: $primary-very-dark-blue;
+        color: var(--color-text);
         &:hover
         {
             color: $secondary-dark-grey;
@@ -407,7 +455,7 @@ body
     margin: 0 auto 7.5rem;
     &__company
     {
-        background-color: $secondary-white;
+        background-color: var(--color-component-background);
         text-align: center;
         padding: 3rem 1rem 2.5rem;
         position: relative;
@@ -443,7 +491,7 @@ body
 
     &__info
     {
-        background-color: $secondary-white;
+        background-color: var(--color-component-background);
         border-radius: 10px;
         padding: 2rem 1rem;
         margin-top: 1rem;
@@ -483,7 +531,7 @@ body
         }
         strong
         {
-            color: $primary-very-dark-blue;
+            color: var(--color-text);
         }
         a
         {
@@ -523,7 +571,7 @@ body
 {
     padding: 5vw;
     width: 100vw;
-    background-color: $secondary-white;
+    background-color: var(--color-component-background);
     margin: 0 auto;
     position: fixed;
     bottom: 0;
