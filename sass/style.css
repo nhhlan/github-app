@@ -286,7 +286,7 @@ body {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   position: relative;
-  z-index: 10;
+  z-index: 3;
 }
 
 .header__searchbar input {
@@ -361,7 +361,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 5;
   visibility: hidden;
   opacity: 0;
   -webkit-transition: visibility 0s opacity 0.5s;

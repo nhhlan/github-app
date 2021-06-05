@@ -1,12 +1,13 @@
 const job = new Job;
 const ui = new UI;
-
+let currentPage = 1;
+let apiLink = job.apiUrl + currentPage; //https://www.themuse.com/api/public/jobs?page=1
 
 /* GET DATA & SHOW UI */
 const loadmoreBtn = document.querySelector('#loadmore');
 const searchbar = document.querySelector('.header__searchbar');
 
-job.getJobs(job.apiUrl).then(data => {
+job.getJobs(apiLink).then(data => {
     if(data.length === 0){
         console.log('No job available.');
     } else {
@@ -16,18 +17,8 @@ job.getJobs(job.apiUrl).then(data => {
         ui.showJob(data.results);
     }
 
-    // Go to detail page
-    let jobCards = document.querySelectorAll('.job__card');
-    jobCards.forEach((jobCard) => {
-        jobCard.addEventListener('click', (e) => {
-            // Hide job div and loadmore
-            ui.jobContainer.style.display = 'none';
-            loadmoreBtn.style.display = 'none';
-            searchbar.style.display = 'none';
-            // Show detail page
-            ui.showDetail(data.results[e.target.closest('.job__card').dataset.index]);
-        });
-    })
+    // Add clickable cursor to card
+    ui.goToDetailPage(loadmoreBtn, searchbar, data);
 });
 
 
@@ -36,30 +27,19 @@ job.getJobs(job.apiUrl).then(data => {
 if(document.contains(loadmoreBtn)){
     loadmoreBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        if(job.currentPage < job.pageCount){
-            job.currentPage += 1;
-            job.getJobs(job.apiUrl).then(data => {
+        if(currentPage < job.pageCount){
+            currentPage += 1;
+            // Change current page
+            apiLink = apiLink.substr(0, 45) + currentPage + apiLink.substr(45 + 1);
+            job.getJobs(apiLink).then(data => {                
                 if(data.length === 0){
                     console.log('No job available.');
                 } else {
-                    ui.jobContainer.style.display = 'grid';
-                    loadmoreBtn.style.display = 'flex';
-                    searchbar.style.display = 'flex';
                     ui.showJob(data.results);
                 }
 
-                // Go to detail page
-                let jobCards = document.querySelectorAll('.job__card');
-                jobCards.forEach((jobCard) => {
-                    jobCard.addEventListener('click', (e) => {
-                        // Hide job div and loadmore
-                        ui.jobContainer.style.display = 'none';
-                        loadmoreBtn.style.display = 'none';
-                        searchbar.style.display = 'none';
-                        // Show detail page
-                        ui.showDetail(data.results[e.target.closest('.job__card').dataset.index]);
-                    });
-                })
+                // Add clickable cursor to card
+                ui.goToDetailPage(loadmoreBtn, searchbar, data);
             });
         } else {
             console.log('No job available.');
@@ -81,9 +61,7 @@ const remoteModal = document.getElementById('remoteModal');
 remoteHidden.addEventListener('change', (e) => {remoteHiddenValue = !remoteHiddenValue;})
 remoteModal.addEventListener('change', (e) => {remoteModalValue = !remoteModalValue;})
 
-
 // Category input value
-let category;
 const inputTitle = document.querySelector('input.category');
 const suggTitle = document.querySelector('.header__autocom-title');
 inputTitle.addEventListener('keyup', (e) => {
@@ -96,7 +74,6 @@ inputLevel.addEventListener('keyup', (e) => {
     ui.searchRequest(e, levelSuggestions, searchbar, suggTitle, inputLevel);
 })
 
-
 // Modal input value
 const modalContainer = document.querySelector('.header__modal');
 const inputModal = document.querySelector('input.levelModal');
@@ -106,21 +83,12 @@ inputModal.addEventListener('keyup', (e) => {
 })
 
 
-// Full searchbar - hidden
+// Full searchbar - hidden (min-width: 768px)
 const searchBtn = document.querySelector('.searchBtn');
 searchBtn.addEventListener('click', () => {
     // Set up api link
-    let apiLink;
-    let categoryLink = inputTitle.value;
-    categoryLink = categoryLink ? "&category=" + categoryLink.replace(/\s/g, "%20").replace(/\//g, "%2") : "";
-    let levelLink = inputLevel.value;
-    levelLink = levelLink ? "&level=" + levelLink.replace(/\s/g, "%20").replace(/\//g, "%2") : "";
-    if(remoteHiddenValue){
-        apiLink = job.apiUrl + categoryLink + levelLink + remoteLink;
-    } else {
-        apiLink = job.apiUrl + categoryLink + levelLink;
-    }
-
+    job.setUpAPILink(inputTitle, inputLevel, remoteHiddenValue);
+    
     // Get data and display
     job.getJobs(apiLink).then(data => {
         if(data.length === 0){
@@ -130,18 +98,8 @@ searchBtn.addEventListener('click', () => {
             ui.showJob(data.results);
         }
 
-        // Go to detail page
-        let jobCards = document.querySelectorAll('.job__card');
-        jobCards.forEach((jobCard) => {
-            jobCard.addEventListener('click', (e) => {
-                // Hide job div and loadmore
-                ui.jobContainer.style.display = 'none';
-                loadmoreBtn.style.display = 'none';
-                searchbar.style.display = 'none';
-                // Show detail page
-                ui.showDetail(data.results[e.target.closest('.job__card').dataset.index]);
-            });
-        })
+        // Add clickable cursor to card
+        ui.goToDetailPage(loadmoreBtn, searchbar, data);
     });
 })
 
@@ -151,16 +109,7 @@ const searchBtnModal = document.querySelector('.searchBtnModal');
 const searchIcon = document.getElementById('search');
 searchBtnModal.addEventListener('click', () => {
     // Set up api link
-    let apiLink;
-    let categoryLink = inputTitle.value;
-    categoryLink = categoryLink ? "&category=" + categoryLink.replace(/\s/g, "%20").replace(/\//g, "%2") : "";
-    let levelLink = inputModal.value;
-    levelLink = levelLink ? "&level=" + levelLink.replace(/\s/g, "%20").replace(/\//g, "%2") : "";
-    if(remoteModalValue){
-        apiLink = job.apiUrl + categoryLink + levelLink + remoteLink;
-    } else {
-        apiLink = job.apiUrl + categoryLink + levelLink;
-    }
+    job.setUpAPILink(inputTitle, inputModal, remoteModalValue);
 
     // Get data and display
     job.getJobs(apiLink).then(data => {
@@ -172,33 +121,14 @@ searchBtnModal.addEventListener('click', () => {
             modalContainer.classList.remove('header__modal-active');
         }
 
-        // Go to detail page
-        let jobCards = document.querySelectorAll('.job__card');
-        jobCards.forEach((jobCard) => {
-            jobCard.addEventListener('click', (e) => {
-                // Hide job div and loadmore
-                ui.jobContainer.style.display = 'none';
-                loadmoreBtn.style.display = 'none';
-                searchbar.style.display = 'none';
-                // Show detail page
-                ui.showDetail(data.results[e.target.closest('.job__card').dataset.index]);
-            });
-        })
+        // Add clickable cursor to card
+        ui.goToDetailPage(loadmoreBtn, searchbar, data);
     });
 })
 
 searchIcon.addEventListener('click', () => {
     // Set up api link
-    let apiLink;
-    let categoryLink = inputTitle.value;
-    categoryLink = categoryLink ? "&category=" + categoryLink.replace(/\s/g, "%20").replace(/\//g, "%2") : "";
-    let levelLink = inputModal.value;
-    levelLink = levelLink ? "&level=" + levelLink.replace(/\s/g, "%20").replace(/\//g, "%2") : "";
-    if(remoteModalValue){
-        apiLink = job.apiUrl + categoryLink + levelLink + remoteLink;
-    } else {
-        apiLink = job.apiUrl + categoryLink + levelLink;
-    }
+    job.setUpAPILink(inputTitle, inputModal, remoteModalValue);
 
     // Get data and display
     job.getJobs(apiLink).then(data => {
@@ -209,18 +139,8 @@ searchIcon.addEventListener('click', () => {
             ui.showJob(data.results);
         }
 
-        // Go to detail page
-        let jobCards = document.querySelectorAll('.job__card');
-        jobCards.forEach((jobCard) => {
-            jobCard.addEventListener('click', (e) => {
-                // Hide job div and loadmore
-                ui.jobContainer.style.display = 'none';
-                loadmoreBtn.style.display = 'none';
-                searchbar.style.display = 'none';
-                // Show detail page
-                ui.showDetail(data.results[e.target.closest('.job__card').dataset.index]);
-            });
-        })
+        // Add clickable cursor to card
+        ui.goToDetailPage(loadmoreBtn, searchbar, data);
     });
 })
 

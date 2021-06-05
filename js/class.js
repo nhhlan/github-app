@@ -1,20 +1,30 @@
 class Job {
     constructor(){
-        this.currentPage = 1;
+        // this.currentPage = 1;
         this.pageCount;
-        this.apiUrl = `https://www.themuse.com/api/public/jobs?page=${this.currentPage}`;
+        this.apiUrl = `https://www.themuse.com/api/public/jobs?page=`;
     }
 
     async getJobs(apiUrl){
         const apiKey = '3166ceb57fc84759aeb994d834ae6bf9ff4a28b3d5dd7035bebf445ec59fe9a4';
         const proxyUrl = 'https://vast-shelf-54523.herokuapp.com/';
-        // const apiUrl = 'https://jobs.github.com/positions.json?description=&location=';
-        // const apiUrl = `https://www.themuse.com/api/public/jobs?page=${this.currentPage}`;
         const response = await fetch(proxyUrl + apiUrl);
         const data = await response.json();
-        this.currentPage = data.page;
+        // this.currentPage = data.page;
         this.pageCount = data.page_count;
         return data;        
+    }
+
+    setUpAPILink(inputTitle, inputLevel, remoteValue){
+        let categoryLink = inputTitle.value;
+        categoryLink = categoryLink ? "&category=" + categoryLink.replace(/\s/g, "%20").replace(/\//g, "%2") : "";
+        let levelLink = inputLevel.value;
+        levelLink = levelLink ? "&level=" + levelLink.replace(/\s/g, "%20").replace(/\//g, "%2") : "";
+        if(remoteValue){
+            apiLink = apiLink + categoryLink + levelLink + remoteLink;
+        } else {
+            apiLink = apiLink + categoryLink + levelLink;
+        }
     }
 }
 
@@ -23,6 +33,7 @@ class UI {
         this.container = document.querySelector('main');
         this.jobContainer = document.querySelector('.job');
     }
+
 
 	getTimestamp(dateInput){
         const now = new Date();
@@ -35,10 +46,12 @@ class UI {
         return daysDiff;
     }
 
+
     clearJob(){
         this.jobContainer.innerHTML = '';
     }
     
+
     showJob(jobs){
         let jobOutput = [];
         jobs.forEach((job, index) => {
@@ -60,6 +73,7 @@ class UI {
 	    this.jobContainer.innerHTML += jobOutput;
     };
 
+
     showSuggestions(list, suggBox){
         let listData;
         if(list.length){
@@ -69,6 +83,7 @@ class UI {
         }
         suggBox.innerHTML = listData;
     }
+
 
     showDetail(job){
         let detailOutput = `
@@ -110,6 +125,22 @@ class UI {
             `;
         this.container.innerHTML = detailOutput;
     };
+
+
+    goToDetailPage(loadmoreBtn, searchbar, data){
+        let jobCards = document.querySelectorAll('.job__card');
+        jobCards.forEach((jobCard) => {
+            jobCard.addEventListener('click', (e) => {
+                // Hide job div and loadmore
+                ui.jobContainer.style.display = 'none';
+                loadmoreBtn.style.display = 'none';
+                searchbar.style.display = 'none';
+                // Show detail page
+                ui.showDetail(data.results[e.target.closest('.job__card').dataset.index]);
+            });
+        })
+    }
+
 
     searchRequest(event, suggList, wrapper, suggBox, inputBox){
         let titleData = event.target.value;
