@@ -1,7 +1,9 @@
+/* DOM */
 const modalBtn = document.querySelector('#modal');
 const modalsvg = document.querySelector('.modal');
 const modal = document.querySelector('.header__modal');
 const darkModeToggle = document.querySelector('[data-dark-mode]');
+
 
 /* MODAL */
 // Only run when HTML contains modal
@@ -21,16 +23,38 @@ if(document.contains(modalBtn)){
 }
 
 
+/* LOCAL STORAGE  */
+// Get the value from the local storage
+let darkMode = localStorage.getItem('darkmode');
+// Check dark mode on page reload
+if(darkMode === 'on') {
+    enableDarkmode();
+}
+
 
 /* DARK MODE */
-darkModeToggle.addEventListener('click', (e) => {
-    // Styling toggle
-    e.currentTarget.classList.toggle('active');
-    // Change color theme
+//Enable dark mode function
+function enableDarkmode() {
     document.body.classList.toggle('dark');
     if(document.contains(modalBtn)){
         modalsvg.classList.toggle('active');
     }
-  });
+};
+
+darkModeToggle.addEventListener('click', (e) => {
+    // Styling toggle
+    e.currentTarget.classList.toggle('active');
+
+    // Enable dark mode = Change color theme
+    darkMode = localStorage.getItem('darkmode');
+    if(darkMode === 'on') {
+        enableDarkmode();
+        darkMode = localStorage.setItem('darkmode', null);
+    } else {
+        enableDarkmode();
+        darkMode = localStorage.setItem('darkmode', 'on');
+    }
+});
+
 
 

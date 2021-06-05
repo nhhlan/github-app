@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
 
-/*--VARIABLES--*/
+/*--SYSTEM VARIABLES--*/
 // Color
 $primary-violet: #5964e0;
 $primary-light-violet: #939BF4;
@@ -20,7 +20,8 @@ $font-family: 'Kumbh Sans', sans-serif;
 $weight-normal: 400;
 $weight-bold: 700;
 
-/*--DARK MODE VAR--*/
+
+/*--DARK MODE VARIABLES--*/
 :root 
 {
     --color-background: #{$secondary-light-grey};
@@ -35,7 +36,6 @@ $weight-bold: 700;
     --btn-text-2: #{$primary-violet};
     --checkbox-background: #{rgba($color: $primary-midnight, $alpha: 0.1)};
 }
-  
 .dark 
 {
     --color-background: #{$primary-midnight};
@@ -108,15 +108,22 @@ input[type=text], button, textarea, select
     font: inherit;
     color: var(--color-text);
     background-color: var(--color-component-background);
+    outline: none; // Not really accessible
 }
 ::placeholder
 {
     color: var(--color-placeholder);
 }
+*:focus 
+{
+  outline: 1px solid $primary-light-violet;
+}
+/* Make svg clickable */
 svg
 {
-    pointer-events: none; //Mmake svg clickable
+    pointer-events: none; 
 }
+
 
 /*--VISUALLY HIDDEN--*/
 .sr-only {
@@ -193,10 +200,6 @@ svg
     margin-left: -1.5rem;
     background-color: $secondary-dark-grey;
 }
-*:focus 
-{
-  outline: 1px solid $primary-light-violet;
-}
 
 
 /*--LAYOUT--*/
@@ -269,6 +272,31 @@ body
         left: 28px;
     }
 
+
+    // Autocomplete box
+    &__autocom
+    {
+        &-title, &-level, &-levelModal
+        {
+            position: absolute;
+            top: 80px;
+            left: 0;
+            background-color: var(--color-component-background);
+            opacity: 0;
+            pointer-events: none;
+            max-height: 21.75rem;
+            width: 90vw;
+            li
+            {
+                padding: 1rem 0 1rem 2rem;
+                display: none;
+                &:hover{
+                    background: var(--checkbox-background);
+                }
+            }
+        }
+    }
+
     //Search Bar
     &__searchbar
     {
@@ -279,6 +307,7 @@ body
         background-color: var(--color-component-background);
         border-radius: 10px;
         transform: translateY(-50%);
+        position: relative;
         input
         {
             border: none;
@@ -315,9 +344,26 @@ body
         {
             fill: $secondary-white;
         }
+
+        &.open
+        {
+            border-radius: 10px 10px 0 0;
+            .header__autocom-title, .header__autocom-level, .header__autocom-levelModal
+            {
+                opacity: 1;
+                pointer-events: auto;
+                li
+                {
+                    display: block;
+                }
+            }
+        }
+
     }
     
-    
+
+
+    // Modal pop up
     &__modal
     {
         background-color: rgba($color: $primary-midnight, $alpha: 0.5);
@@ -346,11 +392,12 @@ body
             width: 90%;
             padding: 1.5rem;
             border-radius: 10px;
+            position: relative;
             label
             {
                 @extend .row;
             }
-            label[for=location]
+            label[for=level]
             {
                 padding: 0 0 1.5rem;
                 input
@@ -391,6 +438,7 @@ body
         border-radius: 10px;
         margin-bottom: 3rem;
         text-align: left;
+        min-height: 250px;
         * + *
         {
             margin-bottom: 1rem;
@@ -420,6 +468,10 @@ body
             font-size: 2rem;
             color: $secondary-dark-grey;
         }
+        span:nth-of-type(3)
+        {
+            text-transform: capitalize;
+        }
     }
     &__title
     {
@@ -448,7 +500,7 @@ body
 }
 
 
-// Detail
+// Detail page
 .detail
 {
     width: 90vw;

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
-/*--VARIABLES--*/
-/*--DARK MODE VAR--*/
+/*--SYSTEM VARIABLES--*/
+/*--DARK MODE VARIABLES--*/
 :root {
   --color-background: #F4F6F8;
   --color-text: #19202D;
@@ -86,6 +86,7 @@ input[type=text], button, textarea, select {
   font: inherit;
   color: var(--color-text);
   background-color: var(--color-component-background);
+  outline: none;
 }
 
 ::-webkit-input-placeholder {
@@ -104,6 +105,11 @@ input[type=text], button, textarea, select {
   color: var(--color-placeholder);
 }
 
+*:focus {
+  outline: 1px solid #939BF4;
+}
+
+/* Make svg clickable */
 svg {
   pointer-events: none;
 }
@@ -178,10 +184,6 @@ svg {
   width: 90vw;
   margin-left: -1.5rem;
   background-color: #6E8098;
-}
-
-*:focus {
-  outline: 1px solid #939BF4;
 }
 
 /*--LAYOUT--*/
@@ -263,6 +265,7 @@ body {
   border-radius: 10px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+  position: relative;
 }
 
 .header__searchbar input {
@@ -303,6 +306,39 @@ body {
   fill: #FFFFFF;
 }
 
+.header__searchbar.open {
+  border-radius: 10px 10px 0 0;
+}
+
+.header__searchbar.open__autocom-title, .header__searchbar.open__autocom-level, .header__searchbar.open__autocom-levelModal {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.header__searchbar.open__autocom-title li, .header__searchbar.open__autocom-level li, .header__searchbar.open__autocom-levelModal li {
+  display: block;
+}
+
+.header__autocom-title, .header__autocom-level, .header__autocom-levelModal {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  background-color: var(--color-component-background);
+  opacity: 0;
+  pointer-events: none;
+  max-height: 21.75rem;
+  width: 90vw;
+}
+
+.header__autocom-title li, .header__autocom-level li, .header__autocom-levelModal li {
+  padding: 1rem 0 1rem 2rem;
+  display: none;
+}
+
+.header__autocom-title li:hover, .header__autocom-level li:hover, .header__autocom-levelModal li:hover {
+  background: var(--checkbox-background);
+}
+
 .header__modal {
   background-color: rgba(18, 23, 33, 0.5);
   display: -webkit-box;
@@ -340,13 +376,14 @@ body {
   width: 90%;
   padding: 1.5rem;
   border-radius: 10px;
+  position: relative;
 }
 
-.header__modal-content label[for=location] {
+.header__modal-content label[for=level] {
   padding: 0 0 1.5rem;
 }
 
-.header__modal-content label[for=location] input {
+.header__modal-content label[for=level] input {
   margin-left: 1rem;
   border: none;
 }
@@ -375,6 +412,7 @@ body {
   border-radius: 10px;
   margin-bottom: 3rem;
   text-align: left;
+  min-height: 250px;
 }
 
 .job__card * + * {
@@ -404,6 +442,10 @@ body {
 .job__createTime span:nth-of-type(2) {
   font-size: 2rem;
   color: #6E8098;
+}
+
+.job__createTime span:nth-of-type(3) {
+  text-transform: capitalize;
 }
 
 .job__title {
@@ -631,8 +673,8 @@ body {
   width: 1px;
   height: 5rem;
   background: rgba(110, 128, 152, 0.2);
-  -webkit-transform: translateX(-2rem);
-          transform: translateX(-2rem);
+  -webkit-transform: translateX(1rem);
+          transform: translateX(1rem);
 }
 
 .header__searchbar .modal, .header__searchbar #search {
