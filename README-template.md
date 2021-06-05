@@ -36,6 +36,7 @@ Some of the topic that I have researched and applied are:
 - Datetime manipulation
 - Media query for JS 
 - API from the Muse (because Github job is deprecated)
+- Autocomplete search
 etc.
 
 What I like most about these project is I have to research everything, which make me understand deeper about the concept of making, not just coding like a habit.
