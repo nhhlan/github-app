@@ -13,8 +13,8 @@ This is a solution to the [GitHub Jobs API challenge on Frontend Mentor](https:/
 
 ## Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Solution URL](https://github.com/nhhlan/github-app)
+- [Live Site URL](https://nhhlan.github.io/github-app/)
 
 ## My process
 
