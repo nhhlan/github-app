@@ -60,6 +60,16 @@ class UI {
 	    this.jobContainer.innerHTML += jobOutput;
     };
 
+    showSuggestions(list, suggBox){
+        let listData;
+        if(list.length){
+            listData = list.join('');
+        } else {
+            listData = '<li style="color: #6E8098;">No category found.</li>'
+        }
+        suggBox.innerHTML = listData;
+    }
+
     showDetail(job){
         let detailOutput = `
         <div class="detail">
@@ -101,5 +111,35 @@ class UI {
         this.container.innerHTML = detailOutput;
     };
 
+    searchRequest(event, suggList, wrapper, suggBox, inputBox){
+        let titleData = event.target.value;
+        let emptyArr = [];
+        if(titleData){
+            emptyArr = suggList.filter((data)=>{
+                //filtering array value and return only those words which are start with user enetered chars
+                return data.toLocaleLowerCase().startsWith(titleData.toLocaleLowerCase()); 
+            }).map((data)=>{
+                // passing return data inside li tag
+                return data = '<li>'+ data +'</li>';
+            });
+            //show autocomplete box
+            wrapper.classList.add("open"); 
+            this.showSuggestions(emptyArr, suggBox);
     
+            let allLI = suggBox.querySelectorAll("li");
+            for (let i = 0; i < allLI.length; i++) {
+                // take value from selection
+                allLI[i].addEventListener('click', (e) => {
+                    inputBox.value = e.target.textContent;
+                    wrapper.classList.remove("open"); 
+                    setTimeout(()=> {
+                        suggBox.innerHTML = '';
+                    },1000);
+                })
+            }
+        } else {
+            //hide autocomplete box
+            wrapper.classList.remove("open"); 
+        }
+    }
 }

@@ -257,7 +257,7 @@ body {
   left: 28px;
 }
 
-.header__autocom-title, .header__autocom-level, .header__autocom-levelModal {
+.header__autocom-title, .header__autocom-modal {
   position: absolute;
   top: 80px;
   left: 0;
@@ -268,12 +268,12 @@ body {
   width: 90vw;
 }
 
-.header__autocom-title li, .header__autocom-level li, .header__autocom-levelModal li {
+.header__autocom-title li, .header__autocom-modal li {
   padding: 1rem 0 1rem 2rem;
   display: none;
 }
 
-.header__autocom-title li:hover, .header__autocom-level li:hover, .header__autocom-levelModal li:hover {
+.header__autocom-title li:hover, .header__autocom-modal li:hover {
   background: var(--checkbox-background);
 }
 
@@ -286,6 +286,7 @@ body {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   position: relative;
+  z-index: 10;
 }
 
 .header__searchbar input {
@@ -330,12 +331,13 @@ body {
   border-radius: 10px 10px 0 0;
 }
 
-.header__searchbar.open .header__autocom-title, .header__searchbar.open .header__autocom-level, .header__searchbar.open .header__autocom-levelModal {
+.header__searchbar.open .header__autocom-title, .header__searchbar.open .header__autocom-modal {
   opacity: 1;
   pointer-events: auto;
+  overflow: hidden;
 }
 
-.header__searchbar.open .header__autocom-title li, .header__searchbar.open .header__autocom-level li, .header__searchbar.open .header__autocom-levelModal li {
+.header__searchbar.open .header__autocom-title li, .header__searchbar.open .header__autocom-modal li {
   display: block;
 }
 
@@ -359,7 +361,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   visibility: hidden;
   opacity: 0;
   -webkit-transition: visibility 0s opacity 0.5s;
@@ -399,10 +401,22 @@ body {
   text-align: center;
 }
 
+.header__modal.open .header__autocom-modal {
+  opacity: 1;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.header__modal.open .header__autocom-modal li {
+  display: block;
+}
+
 .job {
   width: 90vw;
   text-align: center;
   margin: 2rem auto 5rem;
+  z-index: 0;
+  position: relative;
 }
 
 .job__card {
@@ -413,6 +427,7 @@ body {
   margin-bottom: 3rem;
   text-align: left;
   min-height: 250px;
+  cursor: pointer;
 }
 
 .job__card * + * {

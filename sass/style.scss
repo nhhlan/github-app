@@ -8,7 +8,7 @@ $primary-very-dark-blue: #19202D;
 $primary-midnight: #121721;
 $secondary-white: #FFFFFF;
 $secondary-light-grey: #F4F6F8;
-$secondary-gray: #9daec2;
+$secondary-gray: #e9f0f8;
 $secondary-dark-grey: #6E8098;
 // Fonts
 $size-h1: 1.75rem; // 28px
@@ -276,7 +276,7 @@ body
     // Autocomplete box
     &__autocom
     {
-        &-title, &-level, &-levelModal
+        &-title, &-modal
         {
             position: absolute;
             top: 80px;
@@ -308,6 +308,7 @@ body
         border-radius: 10px;
         transform: translateY(-50%);
         position: relative;
+        z-index: 10;
         input
         {
             border: none;
@@ -348,10 +349,11 @@ body
         &.open
         {
             border-radius: 10px 10px 0 0;
-            .header__autocom-title, .header__autocom-level, .header__autocom-levelModal
+            .header__autocom-title, .header__autocom-modal
             {
                 opacity: 1;
                 pointer-events: auto;
+                overflow: hidden;
                 li
                 {
                     display: block;
@@ -376,7 +378,7 @@ body
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 1;
+        z-index: 2;
         visibility: hidden;
         opacity: 0;
         transition: visibility 0s opacity 0.5s;
@@ -419,6 +421,20 @@ body
                 text-align: center;
             }
         }
+
+        &.open
+        {
+            .header__autocom-modal
+            {
+                opacity: 1;
+                pointer-events: auto;
+                overflow: hidden;
+                li
+                {
+                    display: block;
+                }
+            }
+        }
     }
 
 }
@@ -430,6 +446,8 @@ body
     width: 90vw;
     text-align: center; 
     margin: 2rem auto 5rem;
+    z-index: 0;
+    position: relative;
     &__card
     {
         background-color: var(--color-component-background);
@@ -439,6 +457,7 @@ body
         margin-bottom: 3rem;
         text-align: left;
         min-height: 250px;
+        cursor: pointer;
         * + *
         {
             margin-bottom: 1rem;

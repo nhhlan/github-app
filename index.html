@@ -38,14 +38,14 @@
     <div class="header__searchbar">
       <label for="title">
         <img src="assets/desktop/icon-search.svg" alt="search">
-        <input type="text" placeholder="Filter by category...">          
+        <input type="text" class="category" placeholder="Filter by category...">          
       </label>
       <div class="header__autocom-title">
+        <!-- <li>Accounting</li>
         <li>Accounting</li>
         <li>Accounting</li>
         <li>Accounting</li>
-        <li>Accounting</li>
-        <li>Accounting</li>
+        <li>Accounting</li> -->
       </div>
       <a href="#" id="modal">
         <svg width="20" height="20" class="modal" xmlns="http://www.w3.org/2000/svg"><path d="M19.108 0H.86a.86.86 0 00-.764.455.833.833 0 00.068.884l6.685 9.202.007.01c.242.32.374.708.375 1.107v7.502a.825.825 0 00.248.594.865.865 0 00.942.18l3.756-1.4c.337-.1.56-.41.56-.784v-6.092c0-.399.132-.787.375-1.108l.007-.009 6.685-9.202c.19-.26.217-.6.068-.884A.86.86 0 0019.108 0z" fill="#6E8098" fill-rule="nonzero"/></svg>
@@ -56,18 +56,11 @@
       <div class="header__hidden">
         <label for="level">
           <img src="assets/desktop/icon-location.svg" alt="level">
-          <input type="text" placeholder="Filter by level...">
+          <input type="text" class="levelHidden" placeholder="Filter by level...">
         </label>
-        <div class="header__autocom-level">
-          <!-- <li>Accounting</li>
-          <li>Accounting</li>
-          <li>Accounting</li>
-          <li>Accounting</li>
-          <li>Accounting</li> -->
-        </div>
         <label for="type">
-          <input type="checkbox" name="remote1" id="remote1"> <!-- Need id -->
-          <label for="remote1">Remote Only</label>
+          <input type="checkbox" name="remoteHidden" id="remoteHidden"> <!-- Need id -->
+          <label for="remoteHidden">Remote Only</label>
         </label>
         <a href="#" class="searchBtn lightBtn">Search</a>
       </div>
@@ -78,21 +71,21 @@
       <div class="header__modal-content">
         <label for="level">
           <img src="assets/desktop/icon-location.svg" alt="level">
-          <input type="text" placeholder="Filter by level...">
+          <input type="text" class="levelModal" placeholder="Filter by level...">
         </label>
-        <div class="header__autocom-levelModal">
-          <!-- <li>Accounting</li>
+        <div class="header__autocom-modal">
           <li>Accounting</li>
           <li>Accounting</li>
           <li>Accounting</li>
-          <li>Accounting</li> -->
+          <li>Accounting</li>
+          <li>Accounting</li>
         </div>
         <div class="line"></div>
         <label for="type">
-          <input type="checkbox" name="remote2" id="remote2"> <!-- Need id -->
-          <label for="remote2">Remote Only</label>
+          <input type="checkbox" name="remoteModal" id="remoteModal"> <!-- Need id -->
+          <label for="remoteModal">Remote Only</label>
         </label>
-        <a href="#" class="searchBtn lightBtn">Search</a>
+        <a href="#" class="searchBtnModal lightBtn">Search</a>
       </div>
     </div>
   </header>
@@ -106,9 +99,9 @@
     </div>
   </main>
   
-  <!-- <script src="js/suggestions.js"></script>
+  <script src="js/suggestions.js"></script>
   <script src="js/class.js"></script>
-  <script src="js/app.js"></script> -->
+  <script src="js/app.js"></script>
   <script src="js/ui.js"></script>
 </body>
 </html>
