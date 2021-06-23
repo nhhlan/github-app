@@ -173,4 +173,33 @@ class UI {
             wrapper.classList.remove("open"); 
         }
     }
+
+    showLevel(suggList, wrapper, suggBox, inputBox){
+        let titleData = true;
+        let emptyArr = [];
+        if(titleData){
+            emptyArr = suggList.map((data)=>{
+                // passing return data inside li tag
+                return data = '<li>'+ data +'</li>';
+            });
+            //show autocomplete box
+            wrapper.classList.add("open"); 
+            this.showSuggestions(emptyArr, suggBox);
+    
+            let allLI = suggBox.querySelectorAll("li");
+            for (let i = 0; i < allLI.length; i++) {
+                // take value from selection
+                allLI[i].addEventListener('click', (e) => {
+                    inputBox.value = e.target.textContent;
+                    wrapper.classList.remove("open"); 
+                    setTimeout(()=> {
+                        suggBox.innerHTML = '';
+                    },1000);
+                })
+            }
+        } else {
+            //hide autocomplete box
+            wrapper.classList.remove("open"); 
+        }
+    }
 }

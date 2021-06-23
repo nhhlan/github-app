@@ -70,16 +70,16 @@ inputTitle.addEventListener('keyup', (e) => {
 
 // Level input value
 const inputLevel = document.querySelector('input.levelHidden');
-inputLevel.addEventListener('keyup', (e) => {
-    ui.searchRequest(e, levelSuggestions, searchbar, suggTitle, inputLevel);
+inputLevel.addEventListener('focus', () => {
+    ui.showLevel(levelSuggestions, searchbar, suggTitle, inputLevel);
 })
 
 // Modal input value
 const modalContainer = document.querySelector('.header__modal');
 const inputModal = document.querySelector('input.levelModal');
 const suggModal = document.querySelector('.header__autocom-modal');
-inputModal.addEventListener('keyup', (e) => {
-    ui.searchRequest(e, levelSuggestions, modalContainer, suggModal, inputModal);
+inputModal.addEventListener('focus', () => {
+    ui.showLevel(levelSuggestions, modalContainer, suggModal, inputModal);
 })
 
 
@@ -142,6 +142,26 @@ searchIcon.addEventListener('click', () => {
         // Add clickable cursor to card
         ui.goToDetailPage(loadmoreBtn, searchbar, data);
     });
+})
+
+window.addEventListener('keypress', (e) => {
+    if(e.key === 'Enter') {
+        // Set up api link
+        job.setUpAPILink(inputTitle, inputLevel, remoteHiddenValue);
+        
+        // Get data and display
+        job.getJobs(apiLink).then(data => {
+            if(data.length === 0){
+                console.log('No job available.');
+            } else {
+                ui.clearJob();
+                ui.showJob(data.results);
+            }
+
+            // Add clickable cursor to card
+            ui.goToDetailPage(loadmoreBtn, searchbar, data);
+        });
+    }
 })
 
 
